@@ -11,6 +11,7 @@ const NoteWord = ({ word }: NoteWordProps) => {
   useEffect(() => {
     if (staffRef.current) {
       (staffRef.current as HTMLDivElement).innerHTML = "";
+
       const vf = new Factory({
         renderer: {
           elementId: staffRef.current,
@@ -39,12 +40,8 @@ const NoteWord = ({ word }: NoteWordProps) => {
 
       vf.draw();
     }
-    return () => {
-      if (staffRef.current) {
-        (staffRef.current as HTMLDivElement).innerHTML = "";
-      }
-    };
-  }, []);
+    return () => {};
+  }, [word]);
 
   return <div ref={staffRef}></div>;
 };
