@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 import { Factory } from "vexflow";
+import { ClefType } from "./StoryEditor";
 
 interface NoteWordProps {
   word: string;
+  clef: ClefType;
 }
 
-const NoteWord = ({ word }: NoteWordProps) => {
+const NoteWord = ({ word, clef: clefType }: NoteWordProps) => {
   const staffRef = useRef(null);
 
   useEffect(() => {
@@ -22,7 +24,8 @@ const NoteWord = ({ word }: NoteWordProps) => {
       const score = vf.EasyScore();
       const system = vf.System();
 
-      const clef = Math.random() < 0.5 ? "treble" : "bass";
+      // If clefType is 'both', randomly select 'treble' or 'bass', otherwise use specified clef
+      const clef = clefType === "both" ? (Math.random() < 0.5 ? "treble" : "bass") : clefType;
       const octave = { bass: 3, treble: 4 };
       const time = `${word.length * 2}/2`;
       const notes = word
@@ -41,7 +44,7 @@ const NoteWord = ({ word }: NoteWordProps) => {
       vf.draw();
     }
     return () => {};
-  }, [word]);
+  }, [word, clefType]);
 
   return <div ref={staffRef} className=""></div>;
 };
