@@ -43,7 +43,7 @@ const NoteWord = ({ word }: NoteWordProps) => {
     return () => {};
   }, [word]);
 
-  return <div ref={staffRef}></div>;
+  return <div ref={staffRef} className=""></div>;
 };
 
 export default NoteWord;

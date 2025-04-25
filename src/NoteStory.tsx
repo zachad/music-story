@@ -8,9 +8,12 @@ interface NoteStoryProps {
 }
 const NoteStory = ({ story }: NoteStoryProps) => {
   return (
-    <div className="p-4 text-lg ">
-      {story.split("\n").map((paragraph) => (
-        <div className="flex flex-wrap flex-row gap-x-1 content-start items-center">
+    <div className="p-4 text-lg">
+      {story.split("\n").map((paragraph, ix) => (
+        <div
+          key={`p_${ix}`}
+          className="flex flex-wrap flex-row gap-x-1 content-start items-center"
+        >
           {paragraph.split(" ").map((s, ix) => {
             const match = s.trimEnd().trimStart().match(musicNoteRegex);
             if (match && match?.length > 0) {

@@ -10,18 +10,18 @@ function App() {
   const [text, setText] = useState<string>(story);
 
   return (
-    <div className="grid grid-rows-[auto_1fr] h-screen overflow-hidden print:overflow-visible bg-gray-100 dark:bg-gray-900">
-      <header className="bg-white dark:bg-gray-800 shadow-md px-6 py-4">
+    <div className="grid grid-rows-[auto_1fr] h-screen print:h-auto overflow-hidden print:overflow-visible bg-gray-100 dark:bg-gray-900">
+      <header className="bg-white dark:bg-gray-800 shadow-md print:shadow-none print:border-b print:border-gray-200 px-4 py-4">
         <h1 className="text-xl font-bold text-gray-900 dark:text-white">
           NoteStory
         </h1>
       </header>
-      <div className="grid grid-cols-4 print:grid-cols-1 overflow-hidden p-4 gap-4">
+      <div className="grid grid-cols-4 print:grid-cols-1 overflow-hidden print:m-1 p-4 print:p-0 gap-4">
         <div className="col-span-1 print:hidden overflow-y-auto max-h-full">
           <StoryEditor story={text} setText={setText} />
         </div>
         <div className="col-span-3 print:col-span-1 flex flex-col min-h-0">
-          <div className="bg-white rounded-sm shadow-md print:shadow-none p-6 print:p-0 flex-grow overflow-y-auto print:overflow-visible min-h-0">
+          <div className="bg-white border border-gray-200 print:border-0 rounded-md shadow-md print:shadow-none p-6 print:p-0 overflow-y-auto min-h-0">
             <NoteStory story={text} />
           </div>
         </div>
