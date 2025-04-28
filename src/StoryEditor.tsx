@@ -5,9 +5,11 @@ interface StoryEditorProps {
   setText: (t: string) => void;
   clef: ClefType;
   setClef: (clef: ClefType) => void;
+  maxLedgerLines: number;
+  setMaxLedgerLines: (lines: number) => void;
 }
 
-const StoryEditor = ({ story, setText, clef, setClef }: StoryEditorProps) => (
+const StoryEditor = ({ story, setText, clef, setClef, maxLedgerLines, setMaxLedgerLines }: StoryEditorProps) => (
   <div className="flex flex-col gap-4 grow content-stretch">
     <div className="mb-4">
       <textarea
@@ -45,6 +47,22 @@ const StoryEditor = ({ story, setText, clef, setClef }: StoryEditorProps) => (
           >
             Both
           </button>
+        </div>
+      </div>
+      <div className="mb-2 mt-4">
+        <label className="block text-sm font-medium mb-1">Max Ledger Lines</label>
+        <div className="flex border rounded-md overflow-hidden">
+          {[0, 1, 2, 3].map((lines) => (
+            <button
+              key={`ledger-${lines}`}
+              className={`flex-1 py-2 text-center ${
+                maxLedgerLines === lines ? "bg-blue-500 text-white" : "bg-gray-100"
+              }`}
+              onClick={() => setMaxLedgerLines(lines)}
+            >
+              {lines}
+            </button>
+          ))}
         </div>
       </div>
     </div>

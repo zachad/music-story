@@ -9,6 +9,7 @@ const story = `While helping their Dad in the garden, Abe and Ada asked for a ba
 function App() {
   const [text, setText] = useState<string>(story);
   const [clef, setClef] = useState<ClefType>("both");
+  const [maxLedgerLines, setMaxLedgerLines] = useState<number>(2);
 
   return (
     <div className="grid grid-rows-[auto_1fr] h-screen print:h-auto overflow-hidden print:overflow-visible bg-gray-100 dark:bg-gray-900">
@@ -24,11 +25,13 @@ function App() {
             setText={setText} 
             clef={clef} 
             setClef={setClef}
+            maxLedgerLines={maxLedgerLines}
+            setMaxLedgerLines={setMaxLedgerLines}
           />
         </div>
         <div className="col-span-3 print:col-span-1 flex flex-col min-h-0">
           <div className="bg-white border border-gray-200 print:border-0 rounded-md shadow-md print:shadow-none p-6 print:p-0 overflow-y-auto min-h-0">
-            <NoteStory story={text} clef={clef} />
+            <NoteStory story={text} clef={clef} maxLedgerLines={maxLedgerLines} />
           </div>
         </div>
       </div>
