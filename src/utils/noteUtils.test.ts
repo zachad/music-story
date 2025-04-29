@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { computeNotes } from './noteUtils';
-import { ClefType } from '../StoryEditor';
 
 describe('noteUtils', () => {
   describe('computeNotes', () => {
