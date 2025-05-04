@@ -1,54 +1,51 @@
-# React + TypeScript + Vite
+# NoteStory
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NoteStory is an interactive web application that transforms text into musical notation. The app identifies words composed of musical note letters (A-G) and renders them as actual notes on a musical staff.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Converts words consisting of A-G letters into musical notation
+- Configurable clef selection (treble, bass, or both)
+- Adjustable ledger lines to control note range 
+- Real-time rendering as you type
+- Built with React, TypeScript, and VexFlow
 
-## Expanding the ESLint configuration
+## How It Works
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The application scans your text for words containing only the letters A through G (matching musical notes). When it finds a matching word (minimum 2 characters), it converts each letter to its corresponding musical note and displays it on a staff. For example:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- "CABBAGE" becomes a sequence of C, A, B, B, A, G, E notes
+- "BEE" becomes B, E, E notes
+- "FADE" becomes F, A, D, E notes
+
+The first note in each word appears as a whole note, making it visually distinct.
+
+## Getting Started
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Run tests
+pnpm test
+
+# Build for production
+pnpm build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Configuration Options
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Clef Selection**: Choose between treble clef, bass clef, or both (randomly selected per word)
+- **Ledger Lines**: Adjust the maximum number of ledger lines (0-3) to control the range of notes displayed
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Technology Stack
+
+- React 19
+- TypeScript
+- TailwindCSS
+- VexFlow (music notation rendering)
+- Vite
+- Vitest
