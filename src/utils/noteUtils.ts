@@ -65,7 +65,8 @@ export const computeNotes = (
     .split("")
     .map((c, ix) => {
       const note = c.toUpperCase();
-      const possibleOctaves = filteredRanges[note] || [clef === 'treble' ? 4 : 3];
+      // Only use notes A-G, provide default octave for non-musical characters
+      const possibleOctaves = (note >= 'A' && note <= 'G' ? filteredRanges[note as keyof typeof filteredRanges] : null) || [clef === 'treble' ? 4 : 3];
       const octave = possibleOctaves[Math.floor(Math.random() * possibleOctaves.length)];
       
       return ix === 0 ? `${note}${octave}/w` : `${note}${octave}`;
